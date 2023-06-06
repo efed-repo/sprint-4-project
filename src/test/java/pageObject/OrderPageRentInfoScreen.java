@@ -9,10 +9,18 @@ public class OrderPageRentInfoScreen {
 
     // Календарь Когда привезти самокат
     private By pickDateField =
-            By.xpath("..//input[@class = \"Input_Input__1iN_Z Input_Responsible__1jDKN\"]");
+            By.xpath("//div[@class = \"react-datepicker__input-container\"]/input");
+
+    // выбор в календаре понедельника 3-ей недели.
+    private By thirdWeekFirstDay =
+            By.xpath("//div[@class = \"react-datepicker__month\"]/div[3]/div[1]");
 
     // Выпадающий список Срок аренды
-    private By rentTimeDropDown = By.xpath(".//div[@class = \"Dropdown-root\"]");
+    private By rentTimeDropDown = By.xpath(".//div[@class = \"Dropdown-control\"]");
+
+    //первый элемент выпадающего списка Срок Аренды
+    private By firstElementRentTimeDropDown =
+            By.xpath(".//div[@class = \"Dropdown-menu\"]/div[1]");
 
     // Чекбокс Черный жемчуг
     private By blackColourCheckbox = By.id("black");
@@ -24,24 +32,27 @@ public class OrderPageRentInfoScreen {
     private By commentField = By.xpath
             (".//input[@class = \"Input_Input__1iN_Z Input_Filled__1rDxs Input_Responsible__1jDKN\"]");
 
-    // Кнопка Назад
+    // Кнопка Заказать(рядом с Назад)
     private By orderButton =
             By.xpath(".//div[@class = \"Order_Buttons__1xGrp\"]/button[text() = \"Заказать\"]");
 
-    // Кнопка Далее
+    // Кнопка Назад
     private By backButton = By.xpath(".//button[text() = \"Назад\"]");
 
 
-    // Попап оформитьзаказ:
-
-    // Кнопка Нет
-    private By noButton = By.xpath(".//button[text() = \"Нет\"]");
-
-    // Кнопка Да
-    private By yesButton = By.xpath(".//button[text() = \"Да\"]");
-
     public OrderPageRentInfoScreen(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public void fillRequiredFields() {
+        driver.findElement(pickDateField).click();
+        driver.findElement(thirdWeekFirstDay).click();
+        driver.findElement(rentTimeDropDown).click();
+        driver.findElement(firstElementRentTimeDropDown).click();
+    }
+
+    public void clickOrderButton() {
+        driver.findElement(orderButton).click();
     }
 
 }
