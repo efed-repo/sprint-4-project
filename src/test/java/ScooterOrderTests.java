@@ -1,4 +1,3 @@
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -7,7 +6,6 @@ import pageObject.MainPage;
 import pageObject.OrderPagePersonalInfoScreen;
 import pageObject.OrderPageRentInfoScreen;
 import static org.junit.Assert.assertTrue;
-
 
 @RunWith(Parameterized.class)
 public class ScooterOrderTests extends BaseTest {

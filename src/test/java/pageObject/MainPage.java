@@ -4,11 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class MainPage {
 
@@ -31,7 +32,6 @@ public class MainPage {
     // Заздел вопросов
     private By faqListOfQuestions = By.xpath(".//div[@class = \"accordion\"]/div");
 
-    private By faqListOfAnswers = By.xpath(".//div[@class = \"accordion__heading\"]/div");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -70,20 +70,39 @@ public class MainPage {
         return this;
     }
 
-    /*   public void getListOfFAQQuestions(){
+    public MainPage clickOnEachFAQQuestionAndCheckText() {
         List<WebElement> questionElements = driver.findElements(faqListOfQuestions);
-        System.out.println("размер списка вопросов = " + questionElements.size());
 
-        for (int i = 0; i<questionElements.size(); i++){
-            driver.findElement(faqListOfQuestions).click();
-            String text = driver.findElement(faqListOfQuestions).getText();
-            System.out.println(text);
+        String[] expectedTexts = new String[]{
+                "Сколько это стоит? И как оплатить?\nСутки — 400 рублей. Оплата курьеру — наличными или картой.",
+                "Хочу сразу несколько самокатов! Так можно?\nПока что у нас так: один заказ — один самокат. " +
+                        "Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим.",
+                "Как рассчитывается время аренды?\nДопустим, вы оформляете заказ на 8 мая. Мы привозим самокат 8 мая в течение дня. " +
+                        "Отсчёт времени аренды начинается с момента, когда вы оплатите заказ курьеру. Если мы привезли самокат 8 мая в 20:30, суточная аренда закончится 9 мая в 20:30.",
+                "Можно ли заказать самокат прямо на сегодня?\n" +
+                        "Только начиная с завтрашнего дня. Но скоро станем расторопнее.",
+                "Можно ли продлить заказ или вернуть самокат раньше?\n" +
+                        "Пока что нет! Но если что-то срочное — всегда можно позвонить в поддержку по красивому номеру 1010.",
+                "Вы привозите зарядку вместе с самокатом?\n" +
+                        "Самокат приезжает к вам с полной зарядкой. Этого хватает на восемь суток — даже если будете кататься без передышек и во сне. Зарядка не понадобится.",
+                "Можно ли отменить заказ?\n" +
+                        "Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.",
+                "Я жизу за МКАДом, привезёте?\n" +
+                        "Да, обязательно. Всем самокатов! И Москве, и Московской области."
+
+        };
+
+        for (int i = 0; i < questionElements.size(); i++) {
+            WebElement element = questionElements.get(i);
+            element.click();
+            String actualText = element.getText();
+            assertEquals(expectedTexts[i], actualText);
         }
-    }*/
+        return this;
+    }
 
     public int getListOfFAQQuestionsCount() {
         return driver.findElements(faqListOfQuestions).size();
     }
-
 
 }

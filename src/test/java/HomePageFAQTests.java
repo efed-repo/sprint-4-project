@@ -1,9 +1,5 @@
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import pageObject.MainPage;
-
-
 import static org.junit.Assert.assertEquals;
 
 public class HomePageFAQTests extends BaseTest {
@@ -13,8 +9,10 @@ public class HomePageFAQTests extends BaseTest {
         MainPage mainPage = new MainPage(driver);
         mainPage.waitForLoadScooterImage()
                 .clickCookieButton()
-                .navigateToFAQSection();
+                .navigateToFAQSection()
+                .clickOnEachFAQQuestionAndCheckText();
         assertEquals("На главной странице должно быть 8 воросов",
                 8, mainPage.getListOfFAQQuestionsCount());
     }
+
 }

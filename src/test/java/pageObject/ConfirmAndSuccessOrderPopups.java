@@ -6,17 +6,17 @@ import org.openqa.selenium.WebDriver;
 public class ConfirmAndSuccessOrderPopups {
 
     private WebDriver driver;
-    // Попап оформитьзаказ:
-    // Кнопка Нет
+
+    // Попап оформить заказ - Кнопка Нет
     private By noButton = By.xpath(".//button[text() = \"Нет\"]");
 
-    // Кнопка Да
+    // Попап оформить заказ - Кнопка Да
     private By yesButton = By.xpath(".//button[text() = \"Да\"]");
 
-    //Попап Заказ оформлен:
-    //Кнопка Посмотреть статус
+    // Попап Заказ оформлен - Кнопка Посмотреть статус
     private By checkStatusButton = By.xpath(".//button[text()= \"Посмотреть статус\"]");
 
+    // Попап Заказ оформлен - хедер
     private By successPopupHeader = By.xpath(".//div[@class = \"Order_ModalHeader__3FDaJ\"]");
 
 

@@ -1,7 +1,6 @@
 package pageObject;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -38,7 +37,6 @@ public class OrderPagePersonalInfoScreen {
     public OrderPagePersonalInfoScreen(WebDriver driver) {
         this.driver = driver;
     }
-
 
     public OrderPagePersonalInfoScreen fillFields(String name, String secondName, String address, String phone) {
         driver.findElement(nameField).sendKeys(name);
