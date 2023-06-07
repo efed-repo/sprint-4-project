@@ -1,20 +1,16 @@
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import pageObject.ConfirmAndSuccessOrderPopups;
 import pageObject.MainPage;
 import pageObject.OrderPagePersonalInfoScreen;
 import pageObject.OrderPageRentInfoScreen;
 import static org.junit.Assert.assertTrue;
 
-@RunWith(Parameterized.class)
-public class ScooterOrderTests {
 
-    private WebDriver driver;
+@RunWith(Parameterized.class)
+public class ScooterOrderTests extends BaseTest {
     private final String name;
     private final String secondName;
     private final String address;
@@ -27,51 +23,56 @@ public class ScooterOrderTests {
         this.phone = phone;
     }
 
-
     @Parameterized.Parameters
     public static Object[][] setOrderData() {
         return new Object[][]{
-                {"Имя","Фамилия","Санкт-Петербург","89045678584"},
-                {"Анна","Николаева","Москва","89045670000"},
+                {"Иван", "Сергеев", "Санкт-Петербург", "89045678584"},
+                {"Анна", "Николаева", "Москва", "89045670000"},
+                {"Петр", "Данилов", "Нижний Новгород", "89788706545"},
         };
-    }
-
-    @Before
-    public void init() {
-        driver = new FirefoxDriver();
-        driver.get("https://qa-scooter.praktikum-services.ru/");
-        driver.manage().window().maximize();
     }
 
     @Test
     public void makeOrderUseTopOrderButtonTestSuccess() {
         MainPage mainPage = new MainPage(driver);
-        mainPage.clickCookieButton();
-        mainPage.clickTopOrderButton();
+        mainPage
+                .clickCookieButton()
+                .clickTopOrderButton();
+        // Заполняем форму аренды
+        fillAllRentDataAndConfirmRent();
+    }
 
+    @Test
+    public void makeOrderUseBigOrderButtonTestSuccess() {
+        MainPage mainPage = new MainPage(driver);
+        mainPage
+                .clickCookieButton()
+                .clickBigOrderButton();
+        // Заполняем форму аренды
+        fillAllRentDataAndConfirmRent();
+    }
+
+    private void fillAllRentDataAndConfirmRent() {
         //заполняем первую страницу заказа
         OrderPagePersonalInfoScreen personalInfoPage = new OrderPagePersonalInfoScreen(driver);
-        personalInfoPage.fillFields(name, secondName, address, phone);
-        personalInfoPage.clickNextButton();
+        personalInfoPage
+                .fillFields(name, secondName, address, phone)
+                .clickNextButton();
 
         //заполняем вторую страницу заказа
         OrderPageRentInfoScreen rentInfoPage = new OrderPageRentInfoScreen(driver);
-        rentInfoPage.fillRequiredFields();
+        rentInfoPage.fillDateField();
+        rentInfoPage.fillRentTimeField();
         rentInfoPage.clickOrderButton();
 
         //Подтвердить заказ, проверить, что есть заголовок попапа Заказ оформлен.
         ConfirmAndSuccessOrderPopups confirmOrder = new ConfirmAndSuccessOrderPopups(driver);
-        confirmOrder.clickYesButton();
+        confirmOrder
+                .clickYesButton()
+                .checkStatusButtonDisplays();
         String actual = confirmOrder.getSuccessPopupHeader();
         String expected = "Заказ оформлен";
         assertTrue(actual.contains(expected));
-        confirmOrder.checkAndClickStatusButton();
-    }
-
-
-    @After
-    public void teardown() {
-        driver.quit();
     }
 }
 

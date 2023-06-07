@@ -24,18 +24,18 @@ public class ConfirmAndSuccessOrderPopups {
         this.driver = driver;
     }
 
-
-    public void clickYesButton(){
+    public ConfirmAndSuccessOrderPopups clickYesButton() {
         driver.findElement(yesButton).click();
+        return this;
     }
 
-    public String getSuccessPopupHeader () {
+    public String getSuccessPopupHeader() {
         String header = driver.findElement(successPopupHeader).getText();
         return header;
     }
 
-    public void checkAndClickStatusButton(){
-        driver.findElement(checkStatusButton).isEnabled();
-        driver.findElement(checkStatusButton).click();
+    public ConfirmAndSuccessOrderPopups checkStatusButtonDisplays() {
+        driver.findElement(checkStatusButton).isDisplayed();
+        return this;
     }
 }

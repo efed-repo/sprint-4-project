@@ -40,7 +40,7 @@ public class OrderPagePersonalInfoScreen {
     }
 
 
-    public void fillFields(String name, String secondName, String address, String phone) {
+    public OrderPagePersonalInfoScreen fillFields(String name, String secondName, String address, String phone) {
         driver.findElement(nameField).sendKeys(name);
         driver.findElement(secondNameField).sendKeys(secondName);
         driver.findElement(addressField).sendKeys(address);
@@ -49,15 +49,16 @@ public class OrderPagePersonalInfoScreen {
 
         List<WebElement> elements = driver.findElements(metroStationsList);
         int indexOfRandomElement = new Random()
-                .ints(0, elements.size()-1)
+                .ints(0, elements.size() - 1)
                 .findFirst()
                 .getAsInt();
         elements.get(indexOfRandomElement).click();
-
+        return this;
     }
 
-    public void clickNextButton() {
+    public ConfirmAndSuccessOrderPopups clickNextButton() {
         driver.findElement(nextButton).click();
+        return new ConfirmAndSuccessOrderPopups(driver);
     }
 
 }
