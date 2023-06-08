@@ -7,9 +7,6 @@ public class ConfirmAndSuccessOrderPopups {
 
     private WebDriver driver;
 
-    // Попап оформить заказ - Кнопка Нет
-    private By noButton = By.xpath(".//button[text() = \"Нет\"]");
-
     // Попап оформить заказ - Кнопка Да
     private By yesButton = By.xpath(".//button[text() = \"Да\"]");
 
@@ -30,12 +27,10 @@ public class ConfirmAndSuccessOrderPopups {
     }
 
     public String getSuccessPopupHeader() {
-        String header = driver.findElement(successPopupHeader).getText();
-        return header;
+        return driver.findElement(successPopupHeader).getText();
     }
 
-    public ConfirmAndSuccessOrderPopups checkStatusButtonDisplays() {
+    public void checkStatusButtonDisplays() {
         driver.findElement(checkStatusButton).isDisplayed();
-        return this;
     }
 }

@@ -1,7 +1,7 @@
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public abstract class BaseTest {
 
@@ -9,7 +9,7 @@ public abstract class BaseTest {
 
     @Before
     public void setUp() {
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://qa-scooter.praktikum-services.ru/");
     }
