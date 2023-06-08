@@ -12,7 +12,7 @@ public class OrderPageRentInfoScreen {
 
     // Календарь Когда привезти самокат
     private By pickDateField =
-            By.xpath("//div[@class = \"react-datepicker__input-container\"]/input");
+            By.xpath(".//input[@placeholder = \"* Когда привезти самокат\"]");
 
     private By calendar =
             By.xpath("//div[@class = \"react-datepicker__month\"]/div/div");

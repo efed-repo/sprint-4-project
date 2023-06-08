@@ -12,22 +12,22 @@ public class OrderPagePersonalInfoScreen {
     private WebDriver driver;
 
     //Поле Имя
-    private By nameField = By.xpath(".//div[@class = \"Order_Form__17u6u\"]/div[1]/input");
+    private By nameField = By.xpath(".//input[@placeholder = \"* Имя\"]");
 
     //Поле Фамилия
-    private By secondNameField = By.xpath(".//div[@class = \"Order_Form__17u6u\"]/div[2]/input");
+    private By secondNameField = By.xpath(".//input[@placeholder = \"* Фамилия\"]");
 
     //Поле Адрес:куда привезти заказ
-    private By addressField = By.xpath(".//div[@class = \"Order_Form__17u6u\"]/div[3]/input");
+    private By addressField = By.xpath(".//input[@placeholder = \"* Адрес: куда привезти заказ\"]");
 
     //Выпадающий список Станция метро
-    private By metroStationField = By.xpath(".//div[@class = \"Order_Form__17u6u\"]/div[4]");
+    private By metroStationField = By.xpath(".//input[@placeholder = \"* Станция метро\"]");
 
     //список станций метро
     private By metroStationsList = By.xpath(".//ul[@class = \"select-search__options\"]/li");
 
     //Поле Телефон: на него позвонит курьер
-    private By phoneNumberField = By.xpath(".//div[@class = \"Order_Form__17u6u\"]/div[5]/input");
+    private By phoneNumberField = By.xpath(".//input[@placeholder = \"* Телефон: на него позвонит курьер\"]");
 
     //Кнопка Далее
     private By nextButton =
